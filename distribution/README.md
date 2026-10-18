@@ -1,5 +1,7 @@
 # SLCraft Client 0.2.6 — Small Distribution
 
+![Minecraft × SCP:SL](assets/readme-header.png)
+
 [한국어 번역](README.ko.md)
 
 > **CLIENT ONLY — NEVER INSTALL OR RUN THIS BUILD ON A SERVER.**
@@ -84,3 +86,5 @@ cd src/minecraft
 Source builds do not overwrite `payload` automatically. If you update the binaries, also regenerate the payload checksums. This release ships the 0.2.6 binaries.
 
 See the [third-party notices](THIRD-PARTY-NOTICES.md) and [validation report](VALIDATION.md). This project is not an official product of Northwood, Mojang, AnomalyLabs, or SkyCraft.
+
+![SLCraft gameplay screenshot](assets/readme-gameplay.png)

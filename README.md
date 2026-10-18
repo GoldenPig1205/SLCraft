@@ -1,5 +1,7 @@
 # SLCraft Client 0.2.6
 
+![Minecraft × SCP:SL](distribution/assets/readme-header.png)
+
 [한국어 번역](README.ko.md)
 
 > **CLIENT ONLY — NEVER INSTALL OR RUN THIS BUILD ON A SERVER.**
@@ -42,3 +44,5 @@ Run these commands in PowerShell 7:
 `outputs/SLcraftClient`, `work`, and `migration-original` are local development and recovery data excluded from Git. Before the new distribution is installed, the root launch wrappers can use an existing development installation if present. Users downloading the public repository should follow the setup instructions above.
 
 See [third-party notices](distribution/THIRD-PARTY-NOTICES.md) and the [release validation report](distribution/VALIDATION.md). Not all doors, slopes, elevators, or roles have been tested.
+
+![SLCraft gameplay screenshot](distribution/assets/readme-gameplay.png)

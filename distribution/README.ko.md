@@ -1,5 +1,7 @@
 # SLCraft Client 0.2.6 — 작은 배포본
 
+![마인크래프트 × SCP:SL](assets/readme-header.png)
+
 [English](README.md)
 
 > **클라이언트 전용 — 이 빌드를 서버에 절대 설치하거나 실행하지 마세요.**
@@ -82,3 +84,5 @@ cd src/minecraft
 소스 빌드 결과는 자동으로 payload를 덮어쓰지 않습니다. 개발자가 바이너리를 갱신했다면 payload 체크섬도 새로 작성해야 합니다. 배포판은 0.2.6 바이너리를 유지합니다.
 
 라이선스와 외부 구성 요소는 [한국어 고지](THIRD-PARTY-NOTICES.ko.md)를, 검사 결과는 [한국어 검증 기록](VALIDATION.ko.md)을 확인하세요. 이 프로젝트는 Northwood·Mojang·AnomalyLabs·SkyCraft의 공식 제품이 아닙니다.
+
+![SLCraft 게임 화면](assets/readme-gameplay.png)

@@ -1,5 +1,7 @@
 # SLCraft Client 0.2.6
 
+![마인크래프트 × SCP:SL](distribution/assets/readme-header.png)
+
 [English](README.md)
 
 > **클라이언트 전용 — 이 빌드를 서버에 절대 설치하거나 실행하지 마세요.**
@@ -38,3 +40,5 @@ PowerShell 7에서 실행합니다.
 기존 `outputs/SLcraftClient`, `work`, `migration-original`은 개발·복구에 사용하는 로컬 자료이며 Git에서는 제외합니다. 새 배포본을 설치하기 전에는 루트 실행 래퍼가 기존 개발 실행본이 있으면 사용하며, GitHub에서 새로 받은 사용자는 공개 설치 절차를 따릅니다.
 
 [라이선스와 외부 구성 요소](distribution/THIRD-PARTY-NOTICES.ko.md), [배포판 검증 기록](distribution/VALIDATION.ko.md). 모든 문·경사·역할을 검증한 상태는 아닙니다.
+
+![SLCraft 게임 화면](distribution/assets/readme-gameplay.png)
