@@ -1,5 +1,7 @@
 # Licenses and external components
 
+[한국어 번역](THIRD-PARTY-NOTICES.ko.md)
+
 - SLCraft client and bridge changes: MIT, `LICENSE`.
 - Minecraft bridge derived from chasmlol/SkyCraft: MIT, `licenses/SkyCraft-MIT.txt`. Original notices are retained in source.
 - The separate setup host in `src/installer` is GPL-3.0-or-later; its license is in that directory. It is built locally against Anomaly.InstallerCore, downloaded from AnomalyLabsIO/anomaly-launcher at the commit and archive SHA256 pinned in `dependencies.json`. The upstream GPL source, license, dependency declarations and native helper references remain in `.tools` after setup. No Anomaly compiled component is shipped in this ZIP. Upstream: https://github.com/AnomalyLabsIO/anomaly-launcher .

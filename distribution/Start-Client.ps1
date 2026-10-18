@@ -2,7 +2,7 @@ param([switch]$Restart)
 . (Join-Path $PSScriptRoot 'Release.Common.ps1')
 Assert-Payload
 $installed=Join-Path $PSScriptRoot '.local/installed.json'
-if(!(Test-Path -LiteralPath $installed)) { throw 'Run Setup.cmd first. See README.ko.md for prerequisites.' }
+if(!(Test-Path -LiteralPath $installed)) { throw 'Run Setup.cmd first. See README.md for prerequisites.' }
 $info=Get-Content -LiteralPath $installed -Raw | ConvertFrom-Json
 $runtime=Get-PrivateGamePath
 $otherClones=@(Get-CimInstance Win32_Process -Filter "Name='SCPSL.exe'" | Where-Object {

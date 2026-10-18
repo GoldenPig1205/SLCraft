@@ -1,17 +1,19 @@
-# 배포판 검증 — 2026-10-18
+# Release Validation — 2026-10-18
 
-대상: Windows x64, SCP:SL 14.2.7 / Unity 6000.0.43f1, Minecraft 26.3, Fabric Loader 0.19.5, MelonLoader 0.7.2, JDK 26, .NET SDK 10.
+[한국어 번역](VALIDATION.ko.md)
 
-- 최종 ZIP의 파일별 SHA256 검증과 필수 파일 존재 검사 통과.
-- ZIP에 게임 원본, 실행 EXE, 개인 월드·로그, 개발 캐시·백업이 포함되지 않는 것을 검사했습니다.
-- Git 제외 규칙에서 게임·백업·빌드·캐시·월드는 제외되고, 소스·설치 도구·직접 만든 DLL/JAR·Gradle Wrapper는 공유 대상으로 남는 것을 검사했습니다. Git에 보이는 개별 파일은 모두 50MiB 미만입니다.
-- Windows PowerShell 5.1에서 설치 사전 검사 통과. ZIP을 공백이 들어간 새 경로에 풀고 다시 검사해 통과했습니다.
-- 고정된 Anomaly 소스 ZIP을 실제로 내려받아 SHA256을 확인하고 설치 호스트를 빌드했습니다. 원본 게임의 Unity/IL2CPP 검사 dry run도 통과했습니다.
-- 실제 Setup.ps1 전체 설치를 수행했습니다. Steam 원본의 별도 사본, MelonLoader, Il2Cpp 참조 생성, .NET 6.0.36 준비, Minecraft 실행 설정 준비가 완료됐습니다. 설치 상태는 GameVersion=14.2.7, Patched=true입니다. 생성된 게임 사본과 의존성은 Git과 배포 ZIP에서 제외합니다.
-- 배포 소스로 C# 빌드 성공, 오류 0개(기존 nullable 경고 8개). 공개 DLL은 개인 PC의 디버그 경로 없이 다시 빌드했습니다.
-- 배포 소스의 프로토콜 검사 23개, Minecraft Gradle build 및 Java 테스트 28개 통과.
-- 게임 창을 띄우는 새 배포판 기동·플레이 검사는 이번 포장 작업에서 수행하지 않았습니다. 0.2.6 자체의 기존 로컬 검증에서는 실제 몹 경로 이동, TNT의 설치 블록 파괴, 관리자 메뉴·역할 변경 후 복귀를 확인했습니다. 주민 얼굴·물 색의 최종 육안 검사는 아직 남아 있습니다.
+Test environment: Windows x64, SCP:SL 14.2.7 / Unity 6000.0.43f1, Minecraft 26.3, Fabric Loader 0.19.5, MelonLoader 0.7.2, JDK 26, and .NET SDK 10.
 
-설치 검증 PC에는 SDK/JDK와 일부 사용자별 다운로드 캐시가 있었습니다. 완전히 새 Windows 계정/PC에서 전체 네트워크 다운로드를 수행한 검사는 별도로 남아 있습니다. 원본 빌드가 바뀌면 설치를 거절하며, 다른 SCP:SL 버전의 호환성을 주장하지 않습니다.
+- Per-file SHA256 verification and required-file checks passed for the final ZIP.
+- The archive was checked for excluded game files, executable tools, private worlds/logs, development caches, and backups.
+- Git ignore checks confirmed that game copies, backups, build output, caches, and worlds are excluded, while source, setup tools, the SLCraft DLL/JAR, and Gradle Wrapper remain shareable. Every Git-visible file is below 50MiB.
+- Setup preflight passed in Windows PowerShell 5.1. The ZIP was also extracted into a fresh directory containing spaces, and the checks passed there.
+- The pinned Anomaly source archive was downloaded, its SHA256 verified, and the setup host built. The original game's Unity/IL2CPP dry run passed.
+- A complete Setup.ps1 installation succeeded: a separate Steam game copy, MelonLoader, generated Il2Cpp references, .NET 6.0.36, and Minecraft launch configuration. The resulting state reported GameVersion=14.2.7 and Patched=true. Generated game files and dependencies are excluded from Git and the release archive.
+- The packaged C# source built with zero errors and eight existing nullable warnings. The public DLL was rebuilt without private debug paths.
+- The packaged source passed 23 protocol checks, Minecraft Gradle build, and 28 Java tests.
+- Launching and playing the newly packaged client was not tested during this packaging task. Earlier local 0.2.6 tests confirmed actual mob navigation, TNT breaking placed Minecraft blocks, and recovery after administrator-menu and role changes. Final visual checks of villager faces and water colors remain pending.
 
-소스 공개용 ZIP이며 게임과 의존성을 설치 후 내려받거나 복사합니다. ZIP 크기가 실제 설치 디스크 사용량을 뜻하지 않습니다. GitHub 업로드, 커밋, push는 하지 않았습니다.
+The installation test machine already had the SDK/JDK and some user-level download caches. A complete download and installation on a fresh Windows account or another PC remains to be tested. Setup rejects a changed source build; compatibility with other SCP:SL versions is not claimed.
+
+This is a source-inclusive release. Game files and dependencies are downloaded or copied during setup. ZIP size does not represent installed disk usage. No GitHub upload, commit, or push was performed by the packaging workflow.

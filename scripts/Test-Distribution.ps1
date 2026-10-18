@@ -22,7 +22,7 @@ $zip=[IO.Compression.ZipFile]::OpenRead([IO.Path]::GetFullPath($ZipPath))
 try {
  $prefix='SLCraft-Client-0.2.6/'
  $names=@($zip.Entries.FullName)
- foreach($required in @('Setup.cmd','Setup.ps1','Start-Client.cmd','README.ko.md','LICENSE','payload/manifest.json','payload/SLcraft.Client.dll','payload/slcraft-minecraft-client-0.2.6.jar','src/installer/Program.cs','src/client/Core.cs','src/minecraft/gradle/wrapper/gradle-wrapper.jar','SHA256SUMS.txt')) {
+ foreach($required in @('Setup.cmd','Setup.ps1','Start-Client.cmd','README.md','README.ko.md','LICENSE','payload/manifest.json','payload/SLcraft.Client.dll','payload/slcraft-minecraft-client-0.2.6.jar','src/installer/Program.cs','src/client/Core.cs','src/minecraft/gradle/wrapper/gradle-wrapper.jar','SHA256SUMS.txt')) {
   if($names -notcontains ($prefix+$required)) { throw "Missing ZIP file: $required" }; $checks++
  }
  foreach($entry in $zip.Entries) {
