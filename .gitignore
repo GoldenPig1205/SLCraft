@@ -1,0 +1,32 @@
+# Local game copies, original archive, saves, caches and research tools (about 18 GiB).
+/work/
+/migration-original/
+/outputs/
+/migration-*
+/releases/
+/.local/
+/.tools/
+
+# Generated files in the shareable distribution source tree.
+**/.local/
+**/.tools/
+**/.gradle/
+**/build/
+**/bin/
+**/obj/
+**/run/
+**/saves/
+**/logs/
+**/.vs/
+**/.idea/
+*.log
+*.pid
+*.dmp
+*.bak
+*.zip
+*.7z
+*.user
+*.suo
+
+# distribution/payload contains only the small SLCraft DLL/JAR we publish.
+# Keep its own code, Gradle wrapper JAR, installer scripts and lock manifest.

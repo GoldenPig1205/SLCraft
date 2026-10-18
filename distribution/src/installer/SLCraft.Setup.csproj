@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+ <PropertyGroup>
+  <OutputType>Exe</OutputType><TargetFramework>net10.0</TargetFramework>
+  <ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable>
+  <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+ </PropertyGroup>
+ <ItemGroup><ProjectReference Include="$(AnomalyCorePath)" /></ItemGroup>
+ <Target Name="RequireCore" BeforeTargets="PrepareForBuild" Condition="'$(AnomalyCorePath)' == ''">
+  <Error Text="Use Setup.ps1, which downloads the pinned upstream installer source and supplies AnomalyCorePath." />
+ </Target>
+</Project>

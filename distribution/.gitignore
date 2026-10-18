@@ -1,0 +1,13 @@
+.local/
+.tools/
+**/.gradle/
+**/build/
+**/bin/
+**/obj/
+**/run/
+**/saves/
+**/logs/
+*.log
+*.pid
+*.dmp
+*.bak

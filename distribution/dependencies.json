@@ -1,0 +1,11 @@
+{
+  "version": "0.2.6",
+  "supportedGame": "SCP:SL 14.2.7 Windows IL2CPP",
+  "gameAssemblySha256": "0CF429625B379548101ACC6B7C3F40AFB363894B84A505E503D9DD5372E04BCF",
+  "anomalyCommit": "ef385e402488f0a18a405e5bf92a2f61d93a8864",
+  "anomalySourceUrl": "https://codeload.github.com/AnomalyLabsIO/anomaly-launcher/zip/ef385e402488f0a18a405e5bf92a2f61d93a8864",
+  "anomalySourceSha256": "EAF4790442725744B1F83D740ADA491E29DA54DBC7DD205CAB31C5BBE8DF9123",
+  "anomalyResourcesUrl": "https://raw.githubusercontent.com/AnomalyLabsIO/anomaly-resources/2ee30823f9229f9cc85761489e9f4f495f4e2a48/",
+  "dotnetRuntimeUrl": "https://builds.dotnet.microsoft.com/dotnet/Runtime/6.0.36/dotnet-runtime-6.0.36-win-x64.zip",
+  "dotnetRuntimeSha512": "935db5c6cee19f2c016e67168bfae7b491044735de76c673abb3b125dd325fd5e779d7efe12ba80178d46689ae70a25e558a3fa846417d44c5f4ca256e7f4bf2"
+}

@@ -1,0 +1,50 @@
+using SLcraft.Client;
+using System.IO.MemoryMappedFiles;
+
+int passes=0;
+void Check(bool condition,string name) { if(!condition) throw new Exception(name); Console.WriteLine("PASS "+name); passes++; }
+var session=new LinkSession(); session.Begin();
+Check(!MovementPolicy.CanApply(0,100,0,0),"wait for the first collision scan");
+Check(MovementPolicy.CanApply(1000,10,1000,1),"completed empty-space scan allows coordinates outside facility");
+Check(MovementPolicy.CanApply(0,-100,0,1),"large downward movement does not disconnect the world");
+Check(!MovementPolicy.CanApply(double.NaN,100,0,1),"non-finite coordinate remains rejected");
+session.ObserveNativeMenu(false); Check(session.ControlsMinecraft,"failed admin open keeps Minecraft input and HUD");
+session.ObserveNativeMenu(true); Check(session.Connected && !session.ControlsMinecraft,"native menu suspends without disconnecting Minecraft");
+session.ObserveNativeMenu(false); Check(session.ControlsMinecraft,"closing native menu automatically resumes Minecraft");
+session.End(); session.ObserveNativeMenu(true); Check(!session.Connected && !session.NativeMenuOpen,"released session cannot resume from a stale menu");
+string name="Local\\SLcraftTest_"+Guid.NewGuid().ToString("N");
+using var host=new SharedLink(name);
+using var peer=MemoryMappedFile.OpenExisting(name);
+using var view=peer.CreateViewAccessor();
+Check(view.ReadUInt32(0)==0x43594b53 && view.ReadInt32(4)==11,"SkyCraft v11 header");
+host.HostState(true,false,3,4,1,2,3,90,-10,5,1280,720);
+Check(view.ReadInt32(0x100)%2==0 && view.ReadDouble(0x110)==1 && view.ReadSingle(0x128)==90,"host state seqlock and field offsets");
+Check(view.ReadInt32(0x134)==1280 && view.ReadInt32(0x138)==720,"viewport layout");
+view.Write(0x200,1);
+Check(host.PlayerState()==null,"reject torn Minecraft state");
+view.Write(0x204,1); view.Write(0x208,7d); view.Write(0x210,8d); view.Write(0x218,9d); view.Write(0x200,2);
+Check(host.PlayerState() is { InWorld:true, X:7,Y:8,Z:9 },"Minecraft state import");
+host.InputEvent(1,26,1);
+Check(view.ReadInt64(SharedLink.Input)==1 && view.ReadUInt16(SharedLink.Input+0x82)==26 && view.ReadInt32(SharedLink.Input+0x84)==1,"SDL key event ring");
+host.CollisionMessage(1,new byte[]{4,0,0,0});
+Check(view.ReadInt64(SharedLink.Collision)==16 && view.ReadInt32(SharedLink.Collision+0x80)==1,"collision packet alignment");
+view.Write(SharedLink.Render+0x80,3); view.Write(SharedLink.Render+0x84,0); view.Write(SharedLink.Render,8L);
+var packets=host.RenderMessages();
+Check(packets.Count==1 && packets[0].Kind==3 && view.ReadInt64(SharedLink.Render+0x40)==8,"render clear packet and acknowledgement");
+view.Write(SharedLink.Render+0x88,2); view.Write(SharedLink.Render+0x8C,int.MaxValue); view.Write(SharedLink.Render,16L);
+try { host.RenderMessages(); throw new Exception("Expected rejection"); } catch(InvalidDataException) { Check(true,"malformed render length rejected before allocation"); }
+view.Write(SharedLink.Render+0x40,16L);
+view.Write(0x340,2); view.Write(0x344,2); view.Write(0x348,1);
+view.WriteArray(SharedLink.OverlayPixels,new byte[16],0,16); view.Write(0x300,4);
+var frame=host.Overlay();
+Check(frame is { Width:2,Height:2,BottomUp:true } && frame.Value.Pixels.Length==16 && view.ReadInt32(0x300)==2,"triple-buffer ownership exchange");
+view.Write(0x340+64,100000); view.Write(0x344+64,100000); view.Write(0x300,5);
+try { host.Overlay(); throw new Exception("Expected rejection"); } catch(InvalidDataException) { Check(true,"oversized overlay rejected"); }
+Check(!host.MinecraftAlive,"no fabricated Minecraft heartbeat");
+view.Write(0x18,Environment.TickCount64);
+Check(host.MinecraftAlive,"peer heartbeat freshness");
+view.Write(0x18,Environment.TickCount64-4000); view.Write(0x0C,Environment.ProcessId);
+Check(host.MinecraftAlive && !host.MinecraftResponsive,"render heartbeat stall retains a living peer without allowing stale movement");
+view.Write(0x0C,0);
+Check(!host.MinecraftAlive,"stale heartbeat without a living peer disconnects");
+Console.WriteLine($"RESULT: {passes} client protocol checks passed. Real rendering is tested separately in SCP:SL.");

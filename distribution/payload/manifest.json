@@ -1,0 +1,15 @@
+{
+  "version": "0.2.6",
+  "files": [
+    {
+      "name": "slcraft-minecraft-client-0.2.6.jar",
+      "bytes": 275741,
+      "sha256": "B34DA7450DAD77E13C382EE180F7DEEE01ABC184B099CBFEC5A0E9EFCE7341C3"
+    },
+    {
+      "name": "SLcraft.Client.dll",
+      "bytes": 62976,
+      "sha256": "4ED2D535326672727312D084F4C390BAB0CCFAD466CB868C1E6897C1B1FFD9BC"
+    }
+  ]
+}
