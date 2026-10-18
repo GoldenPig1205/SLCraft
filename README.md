@@ -2,6 +2,11 @@
 
 [한국어 번역](README.ko.md)
 
+> **CLIENT ONLY — NEVER INSTALL OR RUN THIS BUILD ON A SERVER.**
+> SLCraft 0.2.6 is for the Windows game client only. Do not deploy it to an SCP:SL dedicated/headless server, a Minecraft dedicated server, or any public/remote server. It is not a LabAPI or EXILED server plugin. This release contains no server deployment package.
+
+The offline local host and Minecraft's integrated world simulation run inside the local client session. They do not make this build a dedicated-server mod or authorize server deployment.
+
 An experimental Windows x64 client that brings Minecraft hands, HUD, inventory, blocks, entities, and movement into SCP:SL facilities. This version supports a separate, offline, single-player local host.
 
 ## Download and install
@@ -36,4 +41,4 @@ Run these commands in PowerShell 7:
 
 `outputs/SLcraftClient`, `work`, and `migration-original` are local development and recovery data excluded from Git. Before the new distribution is installed, the root launch wrappers can use an existing development installation if present. Users downloading the public repository should follow the setup instructions above.
 
-See [third-party notices](distribution/THIRD-PARTY-NOTICES.md) and the [release validation report](distribution/VALIDATION.md). Remote-server play and combat integration are unfinished; not all doors, slopes, elevators, or roles have been tested.
+See [third-party notices](distribution/THIRD-PARTY-NOTICES.md) and the [release validation report](distribution/VALIDATION.md). Not all doors, slopes, elevators, or roles have been tested.

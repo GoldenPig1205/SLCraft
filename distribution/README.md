@@ -2,6 +2,11 @@
 
 [한국어 번역](README.ko.md)
 
+> **CLIENT ONLY — NEVER INSTALL OR RUN THIS BUILD ON A SERVER.**
+> Install and run SLCraft 0.2.6 only on the Windows game client. Do not place the DLL/JAR in an SCP:SL dedicated/headless server, a LabAPI/EXILED plugin directory, or a Minecraft dedicated-server mods directory. Do not deploy it to public or remote servers. No server deployment is permitted for this build.
+
+The launcher's offline local host and Minecraft's integrated world simulation are internal to the local client session. They are not a separate supported server installation. `Setup.cmd` must receive the original **client** game directory, never a dedicated-server directory.
+
 An experimental Windows x64 client that brings Minecraft hands, HUD, inventory, blocks, entities, and movement into SCP:SL facilities. This is the **integrated client**, not the old 0.1.0 server-bridge prototype. The supported mode is a separate, offline, single-player local host.
 
 ## Prerequisites
@@ -61,7 +66,7 @@ The Minecraft HUD temporarily hides while an SL administrator menu is open and r
 - `.tools`: downloaded tool source, archives, and the locally built setup host.
 - `dependencies.json`: pinned versions, download URLs, and verification hashes. `payload/manifest.json`: SLCraft binary hashes.
 
-TNT affects placed Minecraft blocks; it does not destroy the native SL facility. Facility collision uses a 0.25m approximation. Not all doors, slopes, elevators, or roles have been tested. Combat integration and remote-server play are unfinished. Final visual rechecks of villager faces and water colors are still pending.
+TNT affects placed Minecraft blocks; it does not destroy the native SL facility. Facility collision uses a 0.25m approximation. Not all doors, slopes, elevators, or roles have been tested. Final visual rechecks of villager faces and water colors are still pending.
 
 For troubleshooting, check `.local/minecraft-client.log`, `.local/sl-runtime/client-unity.log`, and `.local/sl-runtime/MelonLoader/Latest.log`. Logs can contain PC paths; review them before publishing.
 
